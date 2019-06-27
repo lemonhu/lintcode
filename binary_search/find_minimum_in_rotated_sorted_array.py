@@ -11,13 +11,14 @@ class Solution:
         # write your code here
         left = 0
         right = len(nums) - 1
-        if nums[left] > nums[right]:
-            while left + 1 < right:
-                mid = left + (right-left) // 2
-                if nums[mid] > nums[right]:
-                    left = mid
-                else:
-                    right = mid
-            return min(nums[left], nums[right])
-        return nums[left]
+        res = 0
+        target = nums[right]
+        while left <= right:
+            mid = left + (right - left) // 2
+            if nums[mid] <= target:
+                right = mid - 1
+                res = mid
+            else:
+                left += 1
+        return nums[res]
 
